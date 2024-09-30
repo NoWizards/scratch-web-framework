@@ -1,3 +1,12 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: initial;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .content{
     display: flex;
     align-items: center;
@@ -10,4 +19,45 @@
 
 .input-label{
     display: block;
+    font-style: italic;
+    font-weight: 500;
+}
+
+#todo-input{
+    height: 27px;
+}
+
+.action-todo-btn{
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    height: 27px;
+    background-color: rgba(31, 187, 57, 0.9);
+    color: rgba(16, 16, 16, 1);
+    transition: all 0.3s;
+    &[disabled]{
+        background-color: rgba(146, 146, 146, 0.3);
+        color: rgba(8, 8, 8, 0.3);
+
+    }
+    &:hover:enabled{
+        background-color: rgba(60, 218, 86, 0.9);
+    }
+    &:enabled:hover:active{
+        background-color: rgba(31, 187, 57, 0.9);
+        transform: translateY(1px);
+        transition: 150ms;
+    } 
+}
+
+#todos-list{
+    list-style-type: none;
+    padding-inline-start: 0px;
+
+    li{
+        display: flex;
+        justify-content: space-between;
+        margin: 6px 0px;
+    }
+
 }
