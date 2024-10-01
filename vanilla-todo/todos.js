@@ -19,6 +19,9 @@ addTodoInput.addEventListener('input', ()=>{
 addTodoInput.addEventListener('keydown', ({key})=>{
     key === 'Enter' && addTodoInput.value.length >=3 ? addTodo() : null;
 })
+addTodoButton.addEventListener('click', ()=>{
+    addTodo();
+})
 
 
 //functions 
@@ -49,11 +52,59 @@ function renderTodoInReadMode(todo){
 } 
 
 function renderTodoInEditMode(todo){
-    //TODO
+    const li = document.createElement('li');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = todo;
+    input.style.flexGrow= '1';
+
+
+    li.append(input);
+    const actionBtns = document.createElement('div');
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+    saveButton.className = 'action-todo-btn';
+    saveButton.addEventListener('click', ()=>{
+        const idx = todos.indexOf(todo);
+        updateTodo(idx, input.value);
+    })
+    actionBtns.append(saveButton);
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = 'Cancel';
+    cancelButton.className = 'action-todo-btn';
+    cancelButton.addEventListener('click', ()=>{
+        const idx = todos.indexOf(todo);
+        todosList.replaceChild(
+            renderTodoInReadMode(todo),
+            todosList.childNodes[idx]
+        )
+    })
+    actionBtns.append(cancelButton);
+
+    li.append(actionBtns);
+    return li;
 }
 
 function addTodo(){
+    const desc = addTodoInput.value;
+    todos.push(desc);
+    const todo = renderTodoInReadMode(desc);
+    todosList.append(todo);
+
+    addTodoInput.value = '';
+    addTodoButton.disabled = true;
+}
+
+function updateTodo(idx, desc){
     //TODO
+    todos[idx] = desc;
+    todosList.replaceChild(
+        renderTodoInReadMode(desc),
+        todosList.childNodes[idx]
+    )
+
 }
 
 function removeTodo(idx){

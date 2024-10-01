@@ -31,6 +31,7 @@ body{
     border: none;
     border-radius: 8px;
     padding: 6px 14px;
+    margin-left: 6px;
     height: 27px;
     background-color: rgba(31, 187, 57, 0.9);
     color: rgba(16, 16, 16, 1);
@@ -53,6 +54,7 @@ body{
 #todos-list{
     list-style-type: none;
     padding-inline-start: 0px;
+    min-width: 400px;
 
     li{
         display: flex;
